@@ -1,6 +1,6 @@
 {
   "name": "egg-doras-contenttemp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "contentTemplate",
   "eggPlugin": {
     "name": "doraContentTemp"
@@ -11,10 +11,8 @@
     "egg-plugin"
   ],
   "dependencies": {
-    
     "moment": "^2.24.0",
     "lodash": "^4.17.15",
-    "xss": "^1.0.6",
     "egg-doras-templateconfig": "^1.0.0"
   },
   "devDependencies": {
