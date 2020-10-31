@@ -2,7 +2,7 @@
  * @Author: doramart 
  * @Date: 2019-06-24 13:20:49 
  * @Last Modified by: doramart
- * @Last Modified time: 2020-08-31 00:11:21
+ * @Last Modified time: 2020-10-25 18:27:42
  */
 
 'use strict';
@@ -34,7 +34,10 @@ class ContentTemplateService extends Service {
         let listdata = _list(this, this.ctx.model.ContentTemplate, payload, {
             query: query,
             searchKeys: searchKeys,
-            include: include,
+            include: concatPopulate([{
+                as: 'items',
+                model: 'TemplateItems'
+            }], include),
             attributes
         });
         return listdata;
@@ -56,26 +59,6 @@ class ContentTemplateService extends Service {
 
     async safeDelete(values) {
         return _safeDelete(this, this.ctx.model.ContentTemplate, values);
-    }
-
-    async removeItems(id, values) {
-        return await this.ctx.model.ContentTemplate.findOneAndUpdate({
-            id: id
-        }, {
-            '$pull': {
-                items: values
-            }
-        })
-    }
-
-    async addItems(id, values) {
-        return await this.ctx.model.ContentTemplate.findOneAndUpdate({
-            id: id
-        }, {
-            '$push': {
-                items: values
-            }
-        })
     }
 
     async update(id, payload) {
